@@ -17,6 +17,7 @@ const Dashboard = () => {
 
     for (let i = count.length - 1; i >= 0; i--) {
         reversedArray.push(count[i]);
+        console.log(count[i].mobile)
     }
 
     console.log(reversedArray); // [{ c: 3 }, { b: 2 }, { a: 1 }]
@@ -56,10 +57,10 @@ const Dashboard = () => {
                 </View> */}
       <ScrollView style={styles.scrollDesign}>
                 { reversedArray.map((ele) => {
-                    return <Items id={ele.id} data={ele.data} key={ele.id} />
+                    return <Items mobile={ele.mobile} id={ele.id} data={ele.data} key={ele.id} />
                 })}
                 {searchArray.length>0 && searchArray.map((ele) => {
-                    return <Items id={ele.id} data={ele.data} key={ele.id} />
+                    return <Items mobile={ele.mobile} id={ele.id} data={ele.data} key={ele.id} />
                 })}
       </ScrollView>
         </View>

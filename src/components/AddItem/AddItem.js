@@ -25,17 +25,25 @@ const AddItem = () => {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
   const [inpText, setInpText] = useState("");
+  const [numBox,setNumbox] = useState("")
   const handlechange = (text) => {
     setInpText(text)
   }
+
+  const handlechangeMobile = (text) => {
+    setNumbox(text.toString())
+  }
   const handleAdd = () => {
-    if (inpText.trim().length > 0) {
-      dispatch(adddata(inpText))
+    if (inpText.trim().length > 0 && numBox.trim().length > 0) {
+      // dispatch(adddata(inpText))
+      // dispatch(adddata(numBox))
+      dispatch(adddata({name:inpText,mobile:numBox}))
       Alert.alert(STRING.ITEM_SUCCESS)
     }else{
       Alert.alert(STRING.ITEM_FAIL)
     }
     setInpText("")
+    setNumbox("")
   }
   const handleNavigate = () => {
     navigation.navigate("Dashboard")
@@ -51,9 +59,18 @@ const AddItem = () => {
               <Text style={styles.headerText} >Add Item</Text>
               <View style={styles.inputBox}>
                 <TextInput
-                  placeholder='Enter Description'
+                  placeholder='Enter Your name'
                   onChangeText={handlechange}
                   value={inpText}
+                />
+                
+              </View>
+              <View style={styles.inputBox}>
+                <TextInput
+                keyboardType = 'numeric'
+                  placeholder='Enter Mobile Number'
+                  onChangeText={handlechangeMobile}
+                  value={numBox}
                 />
                 
               </View>

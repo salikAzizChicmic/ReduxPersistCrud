@@ -1,38 +1,79 @@
-import React, { useState } from 'react'
-import { View,Text, TouchableOpacity, TextInput, Alert } from 'react-native'
+import React, { useState,useEffect } from 'react'
+import { View,Text, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native'
 import { useDispatch } from 'react-redux';
 import { removeData, updateData } from '../../redux/features/counter/counterSlice';
 import styles from './style';
+import { useSwipe } from './SwipeGesture/useSwipe';
 
-const Items = ({ id, data }) => {
+const Items = ({ id, data, mobile }) => {
+    
     const dispatch = useDispatch();
     const [updateTxt, setUpdateTxt] = useState("")
     const [show,setShow] = useState(false)
+    const [mshow,setMshow] = useState(false)
+    const [mob,setMobTxt] =useState("")
     
     const handleChange = (text) => {
         setUpdateTxt(text)
     }
+    const handleMobileChange = (text) => {
+        setMobTxt(text)
+        console.log(mob)
+    }
     const handleUpdate = () => {
-        if (updateTxt.trim().length > 0) {
-            let temp=id+" "+updateTxt.trim()
-            dispatch(updateData(temp))
+        if (mob.trim().length > 0) {
+            let temp1=id+"#$"+mob.trim()+"#$mobile"
+            dispatch(updateData(temp1))
+            
         }
+        if (updateTxt.trim().length > 0) {
+
+            let temp=id+"#$"+updateTxt.trim()+"#$name"
+            dispatch(updateData(temp))
+            
+        }
+        
         setUpdateTxt("")
+        setMobTxt("")
         setShow(!show)
+        setMshow(!mshow)
+        
+    }
+
+
+   
+
+    //touch movement
+
+    const { onTouchStart, onTouchEnd } = useSwipe(onSwipeLeft, onSwipeRight, 6)
+
+    function onSwipeLeft(){
+        console.log('SWIPE_LEFT')
+        dispatch(removeData(id))
+    }
+
+    function onSwipeRight(){
+        console.log('SWIPE_RIGHT')
+        handleUpdate()
+        
     }
   return (
+    <ScrollView onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <View style={styles.container}>
-          <Text style={styles.headerTxt}>{ data}</Text>
-          {show && <TextInput onChangeText={handleChange} style={styles.inputBox} value={updateTxt} />}
-          <View style={styles.btnFlex}>
-              <TouchableOpacity onPress={()=>dispatch(removeData(id))} style={styles.delBtn}>
-                  <Text style={styles.delTxt}>Delete</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={handleUpdate} style={styles.updButton}>
-                  <Text style={styles.updText}>Update</Text>
-              </TouchableOpacity>
-          </View>
+          <Text style={styles.headerTxt}>Name -: { data}</Text>
+          <Text style={styles.headerTxt}>Mobile -: { mobile}</Text>
+          {show && 
+             <TextInput placeholder='Enter name' onSubmitEditing={handleUpdate} onChangeText={handleChange} style={styles.inputBox} value={updateTxt} />
+         }
+         {
+            mshow &&  <TextInput keyboardType = 'numeric' placeholder='Enter Phone number' onSubmitEditing={handleUpdate} onChangeText={handleMobileChange} style={styles.inputBox} value={mob} />
+
+         }
+        
+         
+           
       </View>
+      </ScrollView>
       
   )
 }

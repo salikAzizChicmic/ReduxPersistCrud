@@ -9,7 +9,8 @@ export const counterSlice = createSlice({
     adddata: (state, action) => {
       const temp={
         id:nanoid(),
-        data:action.payload
+        data:action.payload.name,
+        mobile:action.payload.mobile
       }
       state.value.push(temp);
       //state.value=[]
@@ -27,10 +28,19 @@ export const counterSlice = createSlice({
       //console.log(action.payload.split(" ")[1])
       state.value.map((val,ind)=>{
         
-        if (val.id === action.payload.split(" ")[0]) {
-          val.id = val.id
-          val.data = action.payload.split(" ")[1]
+        if(action.payload.split("#$")[2]==="name"){
+          if (val.id === action.payload.split("#$")[0]) {
+            val.id = val.id
+            val.data = action.payload.split("#$")[1]
+          }
+        }else{
+          if (val.id === action.payload.split("#$")[0]) {
+            val.id = val.id
+            val.mobile = action.payload.split("#$")[1]
+          }
         }
+        
+        
         }
       )
       //state.value = newData
