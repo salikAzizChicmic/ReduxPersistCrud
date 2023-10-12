@@ -34,7 +34,7 @@ const AddItem = () => {
     setNumbox(text.toString())
   }
   const handleAdd = () => {
-    if (inpText.trim().length > 0 && numBox.trim().length > 0) {
+    if (inpText.trim().length > 0 && numBox.trim().length > 0 && numBox.trim().length === 10) {
       // dispatch(adddata(inpText))
       // dispatch(adddata(numBox))
       dispatch(adddata({name:inpText,mobile:numBox}))
@@ -57,6 +57,7 @@ const AddItem = () => {
             <View style={styles.box}>
             <View style={{}}>
               <Text style={styles.headerText} >Add Item</Text>
+              
               <View style={styles.inputBox}>
                 <TextInput
                   placeholder='Enter Your name'
@@ -71,6 +72,7 @@ const AddItem = () => {
                   placeholder='Enter Mobile Number'
                   onChangeText={handlechangeMobile}
                   value={numBox}
+                  
                 />
                 
               </View>

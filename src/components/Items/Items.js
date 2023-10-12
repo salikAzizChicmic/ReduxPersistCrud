@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { View,Text, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native'
+import { View,Text, TouchableOpacity, TextInput, Alert, ScrollView, Image } from 'react-native'
 import { useDispatch } from 'react-redux';
 import { removeData, updateData } from '../../redux/features/counter/counterSlice';
 import styles from './style';
@@ -62,12 +62,19 @@ const Items = ({ id, data, mobile }) => {
       <View style={styles.container}>
           <Text style={styles.headerTxt}>Name -: { data}</Text>
           <Text style={styles.headerTxt}>Mobile -: { mobile}</Text>
+          <TouchableOpacity>
+            <View style={{flexDirection:'row',backgroundColor:'orange',marginHorizontal:23,borderRadius:10,justifyContent:'center',alignItems:'center'}}>
+                <Text style={{color:'white',fontSize:25,fontWeight:'bold'}}>Hide</Text>
+                <Image style={{height:30,width:30,marginHorizontal:10}} source={require('../../Assets/Images/visible.png')} />
+            </View>
+
+          </TouchableOpacity>
+
           {show && 
              <TextInput placeholder='Enter name' onSubmitEditing={handleUpdate} onChangeText={handleChange} style={styles.inputBox} value={updateTxt} />
-         }
+          }
          {
             mshow &&  <TextInput keyboardType = 'numeric' placeholder='Enter Phone number' onSubmitEditing={handleUpdate} onChangeText={handleMobileChange} style={styles.inputBox} value={mob} />
-
          }
         
          

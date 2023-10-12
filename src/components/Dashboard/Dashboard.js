@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ScrollView,Text,View,Image,TextInput, TouchableOpacity } from 'react-native'
-import Items from '../Items/Items'
+import Items from '../Item/Items'
 import { useNavigation } from '@react-navigation/native'
 import { selectCount } from '../../redux/features/counter/counterSlice'
 import { useSelector } from 'react-redux'
@@ -41,21 +41,10 @@ const Dashboard = () => {
     
     return (
         <View style={styles.container}>
-            {/* <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                <Text style={{ color: 'black', fontSize: 25, fontWeight: 'bold', marginVertical: 15, marginHorizontal: 15 }}>CRUD Database</Text>
-                <TouchableOpacity onPress={handleBack}>
-                    <Image style={{ height: 30, width: 30, marginVertical: 15, marginHorizontal: 15 }} source={require('../../Assets/Images/add-item.png')} />
-                </TouchableOpacity>
-            </View>
-                <View style={{ height: 57, flexDirection: 'row', backgroundColor: 'white', marginHorizontal: '4%', borderRadius: 18 }}>
-                    <Image style={{ height: 20, width: 20, marginVertical: 18, marginLeft: 10, marginRight: 6 }} source={require('../../Assets/Images/searchs.png')} />
-                <TextInput
-                    placeholder='Enter Your Requirements' 
-                    onChangeText={handleSearchChange}
-                    value={searchText}
-                    />
-                </View> */}
+
       <ScrollView style={styles.scrollDesign}>
+
+                
                 { reversedArray.map((ele) => {
                     return <Items mobile={ele.mobile} id={ele.id} data={ele.data} key={ele.id} />
                 })}
