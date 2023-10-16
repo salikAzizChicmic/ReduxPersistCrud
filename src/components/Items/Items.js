@@ -74,7 +74,7 @@ const Items = ({ id, data, mobile }) => {
              <TextInput placeholder='Enter name' onSubmitEditing={handleUpdate} onChangeText={handleChange} style={styles.inputBox} value={updateTxt} />
           }
          {
-            mshow &&  <TextInput keyboardType = 'numeric' placeholder='Enter Phone number' onSubmitEditing={handleUpdate} onChangeText={handleMobileChange} style={styles.inputBox} value={mob} />
+            mshow &&  <TextInput keyboardType = 'numeric' onSubmitEditing={handleUpdate} placeholder='Enter Phone number' onSubmitEditing={handleUpdate} onChangeText={handleMobileChange} style={styles.inputBox} value={mob} />
          }
         
          

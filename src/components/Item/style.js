@@ -5,7 +5,7 @@ import {
   } from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
-    container:{width:'90%',backgroundColor:'white',marginVertical:20,marginHorizontal:19,borderRadius:20},
+    container:{width:400,backgroundColor:'white'},
     headerTxt: { marginVertical: 10, marginHorizontal: 24, fontSize: 20, fontWeight: 'bold' },
     inputBox:{borderWidth:1,marginHorizontal:23,borderRadius:10,marginVertical:10},
     btnFlex: { flexDirection: 'row', marginHorizontal: 13, justifyContent: 'space-around', marginVertical: 10 },
